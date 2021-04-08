@@ -1,0 +1,16 @@
+name: 'Compile GAP package documentation'
+description: 'Compile documentation with or without latex'
+inputs:
+  ABI:
+    description: 'set to 32 to use 32bit build flags for the package'
+    required: false
+    default: ''
+
+runs:
+  using: "composite"
+  steps:
+    - name: "Prepare the package"
+      run:  pkg-ci-scripts/build_pkg.sh
+      env:
+        ABI: ${{ inputs.ABI }}
+      shell: bash

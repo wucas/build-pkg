@@ -1,0 +1,47 @@
+# build-package
+
+This GitHub action builds a gap package.
+
+## Usage
+
+The action `build-package` has to be called by the workflow of a GAP
+package.
+It compiles the package.
+
+
+### Examples
+
+See below for a minimal example to run this action.
+
+#### Minimal example
+```yaml
+name: CI
+
+# Trigger the workflow on push or pull request
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: gap-actions/setup-gap-for-packages@v2
+      - uses: gap-actions/build-package@v1
+```
+
+## Contact
+Please submit bug reports, suggestions for improvements and patches via
+the [issue tracker](https://github.com/gap-actions/build-package/issues)
+or via email to
+[Sergio Siccha](mailto:siccha@mathematik.uni-kl.de).
+
+## License
+The action `build-package` is free software; you can redistribute
+and/or modify it under the terms of the GNU General Public License as published
+by the Free Software Foundation; either version 2 of the License, or (at your
+opinion) any later version. For details, see the file `LICENSE` distributed
+with this action or the FSF's own site.
