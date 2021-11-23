@@ -1,5 +1,5 @@
-name: 'Compile GAP package documentation'
-description: 'Compile documentation with or without latex'
+name: 'Compile GAP package'
+description: 'Compile the given GAP package being tested'
 inputs:
   ABI:
     description: 'set to 32 to use 32bit build flags for the package'
