@@ -45,4 +45,4 @@ runs:
        fi
       env:
         ABI: ${{ inputs.ABI }}
-      shell: bash
+      shell: C:\cygwin64\bin\bash.exe --login -o igncr '{0}'
