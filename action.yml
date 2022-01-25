@@ -5,6 +5,8 @@ inputs:
     description: 'set to 32 to use 32bit build flags for the package'
     required: false
     default: ''
+env:
+  CHERE_INVOKING: 1
 
 runs:
   using: "composite"

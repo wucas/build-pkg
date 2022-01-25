@@ -5,6 +5,9 @@ on:
   - push
   - pull_request
 
+env:
+  CHERE_INVOKING: 1
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -16,9 +19,11 @@ jobs:
       # the target folder of the checkout action is removed
       - uses: actions/checkout@v2
         with:
-          repository: gap-packages/io
+          repository: gap-packages/profiling
       - uses: actions/checkout@v2
         with:
           path: this-action/
       - uses: gap-actions/setup-gap@v2
+        with:
+          GAP_PKGS_TO_BUILD: 'io'
       - uses: ./this-action/
