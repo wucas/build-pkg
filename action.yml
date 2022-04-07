@@ -37,6 +37,9 @@ runs:
        fi
        if [[ -x autogen.sh ]]; then
            ./autogen.sh
+       fi
+       if grep Autoconf ./configure > /dev/null
+       then
            ./configure --with-gaproot=$GAPROOT
            make -j4 V=1
        elif [[ -x configure ]]; then
