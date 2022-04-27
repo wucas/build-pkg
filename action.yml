@@ -9,8 +9,8 @@ inputs:
     description: 'additional arguments to be passed to configure'
     required: false
     default: ''
-env:
-  CHERE_INVOKING: 1
+#env:
+#  CHERE_INVOKING: 1
 
 runs:
   using: "composite"
@@ -19,7 +19,7 @@ runs:
       run: |
        set -ex
 
-       GAPROOT=${GAPROOT-$HOME/gap}
+       GAPROOT=${GAP_HOME}
 
        # ensure coverage is turned on
        if [[ -z $NO_COVERAGE ]]; then
