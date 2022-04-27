@@ -5,6 +5,10 @@ inputs:
     description: 'set to 32 to use 32bit build flags for the package'
     required: false
     default: ''
+  CONFIGFLAGS:
+    description: 'additional arguments to be passed to configure'
+    required: false
+    default: ''
 env:
   CHERE_INVOKING: 1
 
@@ -25,7 +29,7 @@ runs:
        fi
 
        # adjust build flags for 32bit builds
-       if [[ $ABI = 32 ]]; then
+       if [[ "${{ inputs.ABI }}" = 32 ]]; then
            export CFLAGS="$CFLAGS -m32"
            export CXXFLAGS="$CXXFLAGS -m32"
            export LDFLAGS="$LDFLAGS -m32"
@@ -37,12 +41,13 @@ runs:
        fi
        if [[ -x autogen.sh ]]; then
            ./autogen.sh
-           ./configure --with-gaproot=$GAPROOT
+       fi
+       if grep Autoconf ./configure > /dev/null
+       then
+           ./configure --with-gaproot=$GAPROOT ${{ inputs.CONFIGFLAGS }}
            make -j4 V=1
        elif [[ -x configure ]]; then
-           ./configure $GAPROOT
+           ./configure ${{ inputs.CONFIGFLAGS }} $GAPROOT
            make -j4 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS"
        fi
-      env:
-        ABI: ${{ inputs.ABI }}
       shell: C:\cygwin64\bin\bash.exe --login -o igncr '{0}'
